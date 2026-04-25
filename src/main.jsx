@@ -7,5 +7,10 @@ import Form from './components/Form.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Form/>
+    <button type='submit' onClick={
+      (e) =>{
+        e.preventDefault()
+      }
+    }>Submit</button>
   </StrictMode>,
 )
