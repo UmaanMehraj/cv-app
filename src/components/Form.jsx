@@ -34,21 +34,19 @@ function GeneralInfo() {
     )
   }
   return (
-    <section>
-      <div className='form'>
-        <form>
-          <label htmlFor='name'>Name: </label>
-          <input type='text' id='name' name='name' />
-          <label htmlFor='email'>Email:</label>
-          <input type='email' id='email' name='email' />
-          <label htmlFor='phone'>Phone: </label>
-          <input type='tel' id='phone' name='phone' />
-        </form>
-        <button type='submit' onClick={updateDetails}>
-          Submit
-        </button>
-      </div>
-    </section>
+    <div className='form'>
+      <form>
+        <label htmlFor='name'>Name: </label>
+        <input type='text' id='name' name='name' />
+        <label htmlFor='email'>Email:</label>
+        <input type='email' id='email' name='email' />
+        <label htmlFor='phone'>Phone: </label>
+        <input type='tel' id='phone' name='phone' />
+      </form>
+      <button type='submit' onClick={updateDetails}>
+        Submit
+      </button>
+    </div>
   )
 }
 
@@ -68,20 +66,21 @@ function EducationalXp() {
     setEducation({
       ...education,
       schoolName: schoolNameInput.value,
-      title: titleOfStudy,
-      date: dateOfStudy,
+      title: titleOfStudy.value,
+      date: dateOfStudy.value,
     })
+
     changeSubmission(true)
   }
   if (isSubmitted) {
     return (
       <div className='container'>
-        <div className='general'>
-          <h3>School {education.schoolName}</h3>
-          <h3>Title of Study {education.title}</h3>
-          <h3>Date of passing: {education.date}</h3>
+        <div className='education'>
+          <h3>School: {education.schoolName}</h3>
+          <h3>Title of Study: {education.title}</h3>
+          <h3>Date of Passing: {education.date}</h3>
         </div>
-        <button>Edit</button>
+        <button>Eidt</button>
       </div>
     )
   }
@@ -105,11 +104,65 @@ function EducationalXp() {
   )
 }
 
+function PracticalExp() {
+  const [practice, setPractice] = useState({
+    companyName: 'LockHeed',
+    position: 'SDE',
+    dateFrom: '12-12-23',
+    dateEnd: '12-12-25',
+  })
+  const [isSubmitted, changeSubmission] = useState(false)
+
+  function updatePractice(){
+    const company = document.querySelector('#companyName')
+    const positonName = document.querySelector('#position')
+    const dateStart = document.querySelector('#dateFrom')
+    const dateEnd = document.querySelector('#dateEnd')
+
+    setPractice({
+      companyName: company.value, position: positonName.value, dateFrom: dateStart.value, dateEnd: dateEnd.value
+    })
+
+    changeSubmission(true)
+  }
+
+  if(isSubmitted){
+    return(
+      <div className="container">
+        <div className="practice">
+          <h3>Company Name: {practice.companyName}</h3>
+          <h3>Position: {practice.position}</h3>
+          <h3>Date Start: {practice.dateFrom}</h3>
+          <h3>Date End: {practice.dateEnd}</h3>
+        </div>
+        <button>Edit</button>
+      </div>
+    )
+  }
+
+  return (
+    <div className='form'>
+      <form>
+        <label htmlFor='comapnyName'>Company Name: </label>
+        <input type='text' id='companyName' name='companyName' />
+        <label htmlFor='position'>Position Ttitle: </label>
+        <input type='text' id='position' name='position' />
+        <label htmlFor='dateFrom'>Date Joined: </label>
+        <input type='date' name='dateFrom' id='dateFrom' />
+        <label htmlFor='dateEnd'>Date End: </label>
+        <input type='date' name='dateEnd' id='dateEnd' />
+      </form>
+      <button type="submit" onClick={updatePractice}>Submit</button>
+    </div>
+  )
+}
+
 export default function Form() {
   return (
     <>
       <GeneralInfo />
       <EducationalXp />
+      <PracticalExp />
     </>
   )
 }
