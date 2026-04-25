@@ -8,6 +8,7 @@ function GeneralInfo() {
     phone: 1234567890,
   })
   const [isSubmitted, changeSubmission] = useState(false)
+  const [isEditable, changeEdit] = useState(false)
 
   function updateDetails() {
     const nameInp = document.querySelector('#name')
@@ -22,6 +23,11 @@ function GeneralInfo() {
     changeSubmission(true)
   }
 
+  function updateEdit() {
+    changeEdit(true)
+    changeSubmission(false)
+  }
+
   if (isSubmitted) {
     return (
       <>
@@ -34,31 +40,77 @@ function GeneralInfo() {
             <h3>Email: {person.email}</h3>
             <h3>Phone: {person.phone}</h3>
           </div>
-          <button>Edit</button>
+          <button type='submit' onClick={updateEdit}>
+            Edit
+          </button>
         </div>
       </>
     )
   }
-  return (
-    <div className='form'>
-      <form>
-        <label htmlFor='name'>
-          Name:
-          <input type='text' id='name' name='name' />{' '}
-        </label>
-        <label htmlFor='email'>
-          Email:
-          <input type='email' id='email' name='email' />
-        </label>
-        <label htmlFor='phone'>
-          Phone: <input type='tel' id='phone' name='phone' />{' '}
-        </label>
-      </form>
-      <button type='submit' onClick={updateDetails}>
-        Submit
-      </button>
-    </div>
-  )
+
+  if (!isEditable) {
+    return (
+      <div className='form'>
+        <h2>Personal Details</h2>
+        <form>
+          <label htmlFor='name'>
+            Name:
+            <input type='text' id='name' name='name' />{' '}
+          </label>
+          <label htmlFor='email'>
+            Email:
+            <input type='email' id='email' name='email' />
+          </label>
+          <label htmlFor='phone'>
+            Phone: <input type='tel' id='phone' name='phone' />{' '}
+          </label>
+        </form>
+        <button type='submit' onClick={updateDetails}>
+          Submit
+        </button>
+      </div>
+    )
+  }
+
+  if (isEditable) {
+    return (
+      <div className='form'>
+        <h2>Personal Details</h2>
+        <form>
+          <label htmlFor='name'>
+            Name:
+            <input
+              type='text'
+              id='name'
+              name='name'
+              defaultValue={person.name}
+            />{' '}
+          </label>
+          <label htmlFor='email'>
+            Email:
+            <input
+              type='email'
+              id='email'
+              name='email'
+              defaultValue={person.email}
+            />
+          </label>
+          <label htmlFor='phone'>
+            Phone:{' '}
+            <input
+              type='tel'
+              id='phone'
+              name='phone'
+              defaultValue={person.phone}
+            />{' '}
+          </label>
+        </form>
+        <button type='submit' onClick={updateDetails}>
+          Submit
+        </button>
+      </div>
+    )
+  }
 }
 
 function EducationalXp() {
@@ -68,6 +120,12 @@ function EducationalXp() {
     date: '12-12-2024',
   })
   const [isSubmitted, changeSubmission] = useState(false)
+  const [isEditable, changeEdit] = useState(false)
+
+  function updateEdit() {
+    changeEdit(true)
+    changeSubmission(false)
+  }
 
   function updateEducation() {
     const schoolNameInput = document.querySelector('#school')
@@ -95,33 +153,79 @@ function EducationalXp() {
             <h3>Title of Study: {education.title}</h3>
             <h3>Date of Passing: {education.date}</h3>
           </div>
-          <button>Eidt</button>
+          <button type='submit' onClick={updateEdit}>
+            Eidt
+          </button>
         </div>
       </>
     )
   }
+  if (!isEditable) {
+    return (
+      <section>
+        <div className='form'>
+          <h2>Educational Details</h2>
+          <form>
+            <label htmlFor='schoolName'>
+              School: <input type='text' name='schoolName' id='school' />
+            </label>
+            <label htmlFor='title'>
+              Title of Study:
+              <input type='text' name='title' id='title' />{' '}
+            </label>
+            <label htmlFor='date'>
+              Date: <input type='date' name='date' id='date' />
+            </label>
+          </form>
+          <button typeof='submit' onClick={updateEducation}>
+            Submit
+          </button>
+        </div>
+      </section>
+    )
+  }
 
-  return (
-    <section>
-      <div className='form'>
-        <form>
-          <label htmlFor='schoolName'>
-            School: <input type='text' name='schoolName' id='school' />
-          </label>
-          <label htmlFor='title'>
-            Title of Study:
-            <input type='text' name='title' id='title' />{' '}
-          </label>
-          <label htmlFor='date'>
-            Date: <input type='date' name='date' id='date' />
-          </label>
-        </form>
-        <button typeof='submit' onClick={updateEducation}>
-          Submit
-        </button>
-      </div>
-    </section>
-  )
+  if (isEditable) {
+    return (
+      <section>
+        <div className='form'>
+          <h2>Educational Details</h2>
+          <form>
+            <label htmlFor='schoolName'>
+              School:{' '}
+              <input
+                type='text'
+                name='schoolName'
+                id='school'
+                defaultValue={education.schoolName}
+              />
+            </label>
+            <label htmlFor='title'>
+              Title of Study:
+              <input
+                type='text'
+                name='title'
+                id='title'
+                defaultValue={education.title}
+              />{' '}
+            </label>
+            <label htmlFor='date'>
+              Date:{' '}
+              <input
+                type='date'
+                name='date'
+                id='date'
+                defaultValue={education.date}
+              />
+            </label>
+          </form>
+          <button typeof='submit' onClick={updateEducation}>
+            Submit
+          </button>
+        </div>
+      </section>
+    )
+  }
 }
 
 function PracticalExp() {
@@ -132,6 +236,12 @@ function PracticalExp() {
     dateEnd: '12-12-25',
   })
   const [isSubmitted, changeSubmission] = useState(false)
+  const [isEditable, changeEdit] = useState(false)
+
+  function updateEdit() {
+    changeEdit(true)
+    changeSubmission(false)
+  }
 
   function updatePractice() {
     const company = document.querySelector('#companyName')
@@ -162,35 +272,90 @@ function PracticalExp() {
             <h3>Date Start: {practice.dateFrom}</h3>
             <h3>Date End: {practice.dateEnd}</h3>
           </div>
-          <button>Edit</button>
+          <button type='submit' onClick={updateEdit}>
+            Edit
+          </button>
         </div>
       </>
     )
   }
 
-  return (
-    <div className='form'>
-      <form>
-        <label htmlFor='comapnyName'>
-          Company Name:{' '}
-          <input type='text' id='companyName' name='companyName' />
-        </label>
-        <label htmlFor='position'>
-          Position Ttitle: <input type='text' id='position' name='position' />
-        </label>
-        <label htmlFor='dateFrom'>
-          Date Joined: <input type='date' name='dateFrom' id='dateFrom' />
-        </label>
+  if (!isEditable) {
+    return (
+      <div className='form'>
+        <h2>Experience</h2>
+        <form>
+          <label htmlFor='comapnyName'>
+            Company Name:{' '}
+            <input type='text' id='companyName' name='companyName' />
+          </label>
+          <label htmlFor='position'>
+            Position Ttitle: <input type='text' id='position' name='position' />
+          </label>
+          <label htmlFor='dateFrom'>
+            Date Joined: <input type='date' name='dateFrom' id='dateFrom' />
+          </label>
 
-        <label htmlFor='dateEnd'>
-          Date End: <input type='date' name='dateEnd' id='dateEnd' />
-        </label>
-      </form>
-      <button type='submit' onClick={updatePractice}>
-        Submit
-      </button>
-    </div>
-  )
+          <label htmlFor='dateEnd'>
+            Date End: <input type='date' name='dateEnd' id='dateEnd' />
+          </label>
+        </form>
+        <button type='submit' onClick={updatePractice}>
+          Submit
+        </button>
+      </div>
+    )
+  }
+
+  if (isEditable) {
+    return (
+      <div className='form'>
+        <h2>Experience</h2>
+        <form>
+          <label htmlFor='comapnyName'>
+            Company Name:{' '}
+            <input
+              type='text'
+              id='companyName'
+              name='companyName'
+              defaultValue={practice.companyName}
+            />
+          </label>
+          <label htmlFor='position'>
+            Position Ttitle:{' '}
+            <input
+              type='text'
+              id='position'
+              name='position'
+              defaultValue={practice.title}
+            />
+          </label>
+          <label htmlFor='dateFrom'>
+            Date Joined:{' '}
+            <input
+              type='date'
+              name='dateFrom'
+              id='dateFrom'
+              defaultValue={practice.dateFrom}
+            />
+          </label>
+
+          <label htmlFor='dateEnd'>
+            Date End:{' '}
+            <input
+              type='date'
+              name='dateEnd'
+              id='dateEnd'
+              defaultValue={practice.dateEnd}
+            />
+          </label>
+        </form>
+        <button type='submit' onClick={updatePractice}>
+          Submit
+        </button>
+      </div>
+    )
+  }
 }
 
 export default function Form() {
