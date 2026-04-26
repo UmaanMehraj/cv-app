@@ -1,5 +1,5 @@
 .form{
-    padding: 4rem 1rem 0rem 1rem ;
+    padding: 2.5rem 1rem 0rem 1rem ;
     margin: 1rem 0rem 0rem 0rem;
 }
 
@@ -48,3 +48,20 @@ h3{
     font-size: 1rem;
 }
 
+.header{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 2px 0px white;
+}
+
+.footer{
+    margin-top: 5rem;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0px 0px 2px 0px white;
+}
